@@ -1,0 +1,81 @@
+<div class="animated fadeIn">
+    <button type="button" class="k-button" (click)="excelexport.save()">Export All To Excel</button>
+    <div class="card">
+      <kendo-excelexport [data]="reports" fileName="SessionReportsAll.xlsx" #excelexport>
+        <!-- <kendo-excelexport-column field="ProductID" title="Product ID"></kendo-excelexport-column>
+        <kendo-excelexport-column field="ProductName" title="Product Name" [width]="350"></kendo-excelexport-column>
+        <kendo-excelexport-column field="Category.CategoryName" title="Category" [hidden]="true"></kendo-excelexport-column> -->
+        <kendo-excelexport-column field="saathiname"     title="Saathi"        width="60"> </kendo-excelexport-column>
+        <kendo-excelexport-column field="statename"      title="State"         width="60"> </kendo-excelexport-column>
+        <kendo-excelexport-column field="districtname"   title="District"      width="60"> </kendo-excelexport-column>
+        <kendo-excelexport-column field="villagename"    title="Village"       width="60"> </kendo-excelexport-column>
+        <kendo-excelexport-column field="aadhar"         title="Aadhar"        width="60"> </kendo-excelexport-column>
+        <kendo-excelexport-column field="typeofViewer"   title="Type of"       width="60"> </kendo-excelexport-column>
+        <kendo-excelexport-column field="date" 		       title="Date" 		     width="80" ></kendo-excelexport-column>
+        <kendo-excelexport-column field="startTime"      title="Time"          width="60"> </kendo-excelexport-column>
+        <kendo-excelexport-column field="videos"         title="Videos"        width="60"> </kendo-excelexport-column>
+        <kendo-excelexport-column field="tittles"        title="Video Titles"  width="60"> </kendo-excelexport-column>
+        <kendo-excelexport-column field="duration"       title="Duration"      width="60"> </kendo-excelexport-column>
+        <kendo-excelexport-column field="effectiveness"  title="Effectiveness" width="60"> </kendo-excelexport-column>
+      </kendo-excelexport>
+
+    <kendo-grid
+      [kendoGridBinding]="reports"
+      [pageSize]="100"
+      [pageable]="true"
+      [sortable]="true"
+      [filterable]="true"
+      [groupable]="true"
+      [navigatable]="true"
+      [selectable]="true"
+      [columnMenu]="true"
+      [resizable]="true">
+      <!-- [height]="465"> -->
+
+      <ng-template kendoGridToolbarTemplate>
+        <button type="button" kendoGridExcelCommand icon="file-excel" title="Download Viewable Entries only">Export View to Excel</button>
+        <!-- <button class="k-button" (click)="grid.autoFitColumn(groupColumn)">
+            Auto-fit the group column
+        </button>
+          <button class="k-button" (click)="grid.autoFitColumns([firstColumn, lastColumn])">
+              Auto-fit the first and last column
+          </button>
+          <button class="k-button" (click)="grid.autoFitColumns()">
+              Auto-fit all columns
+          </button> -->
+      </ng-template>
+      <!-- <kendo-grid-column  field="i+1" 					   title="S.No				" width="60" [filterable]="false">  </kendo-grid-column> -->
+
+      <kendo-grid-column field="saathiname"     title="Saathi"        width="60"> </kendo-grid-column>
+      <kendo-grid-column field="statename"      title="State"         width="60"> </kendo-grid-column>
+      <kendo-grid-column field="districtname"   title="District"      width="60"> </kendo-grid-column>
+      <kendo-grid-column field="villagename"    title="Village"       width="60"> </kendo-grid-column>
+      <kendo-grid-column field="aadhar"         title="Aadhar"        width="60"> </kendo-grid-column>
+      <kendo-grid-column field="typeofViewer"   title="Type of"       width="60"> </kendo-grid-column>
+      <kendo-grid-column field="date"      title="Local Date Time"          width="120" format={0:z} filter="date">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div *ngIf="dataItem.epocDate!=null">{{ (dataItem.epocDate) | date:"M/d/y h:mm a" }}</div>
+        </ng-template>
+        <ng-template kendoGridFilterCellTemplate let-filter>
+          <date-range-filter-cell
+              class="date-range-filter"
+              [filter]="filter"
+              field="epocDate">
+          </date-range-filter-cell>
+      </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="startTime"      title="Mobile Time"          width="60"> </kendo-grid-column>
+      <kendo-grid-column field="videos"         title="Videos"        width="60" filter="numeric"> </kendo-grid-column>
+      <kendo-grid-column field="tittles"        title="Video Titles"  width="60"> </kendo-grid-column>
+      <kendo-grid-column field="duration"       title="Duration"      width="60" > </kendo-grid-column>
+      <kendo-grid-column field="effectiveness"  title="Effectiveness" width="60" filter="numeric"> 
+        <ng-template kendoGridHeaderTemplate let-column let-columnIndex="columnIndex">
+          <span title="Effectiveness">Effectiveness</span>
+        </ng-template>
+      </kendo-grid-column>
+
+      <!-- <kendo-grid-excel fileName="SessionReport.xlsx" [fetchData]="allData" [filterable]="true"></kendo-grid-excel> -->
+      <kendo-grid-excel fileName="SessionReport.xlsx" [filterable]="true"></kendo-grid-excel>
+    </kendo-grid>
+  </div>
+</div>

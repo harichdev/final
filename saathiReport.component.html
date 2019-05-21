@@ -1,0 +1,92 @@
+<div class="animated fadeIn">
+  <div class="card">
+    <kendo-grid
+    [kendoGridBinding]="reports"
+    [pageSize]="50"
+    [pageable]="true"
+    [sortable]="true"
+    [filterable]="true"
+    [groupable]="true"
+    [navigatable]="true"
+    [selectable]="true"
+    [columnMenu]="true"
+    [resizable]="true">
+
+    <!-- [height]="1000" -->
+
+    <ng-template kendoGridToolbarTemplate>
+      <button type="button" kendoGridExcelCommand icon="file-excel" title="Download Viewable Entries">Export view to Excel</button>
+    </ng-template>
+
+    <kendo-grid-column  field="name"			   title="Name"		     width="40">  </kendo-grid-column>
+    <kendo-grid-column  field="id"           title="Saathi ID"   width="40">  </kendo-grid-column>
+    <kendo-grid-column  field="statename"    title="State"       width="40">  </kendo-grid-column>
+    <kendo-grid-column  field="districtname" title="District"    width="40">  </kendo-grid-column>
+    <kendo-grid-column  field="mandalname"   title="Mandal"      width="40">  </kendo-grid-column>
+    <kendo-grid-column  field="clustername"  title="Cluster"     width="40">  </kendo-grid-column>
+    <kendo-grid-column  field="villagename"  title="Village"     width="40">  </kendo-grid-column>
+    <kendo-grid-column  field="createdAt"    title="Date(YYYY-MM-DD h:mm a)" width="50">
+        <ng-template kendoGridHeaderTemplate let-column let-columnIndex="columnIndex">
+            <span title="Year-Mo-Day H:M AM/PM">Date(YYYY-MM-DD h:mm a)</span>
+          </ng-template>
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <div *ngIf="dataItem.createdAt!=null">{{ (dataItem.createdAt) | date:"yyyy-MM-dd h:mm a" }}</div>
+      </ng-template>
+      <!-- <kendo-grid-column field="createdAt"      title="Date(M/d/y)"          width="100" format={0:d} filter="date">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div *ngIf="dataItem.createdAt!=null">{{ (dataItem.createdAt) | date:"M/d/y" }}</div>
+        </ng-template> -->
+        <!-- <ng-template kendoGridFilterCellTemplate let-filter>
+          <date-range-filter-cell
+              class="date-range-filter"
+              [filter]="filter"
+              field="createdAt">
+          </date-range-filter-cell>
+      </ng-template> -->
+      
+    </kendo-grid-column>
+    <kendo-grid-excel fileName="SSReport.xlsx"  [filterable]="true"></kendo-grid-excel>
+    </kendo-grid>
+  </div>
+</div>
+
+
+
+<!-- <div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+            <thead>
+              <tr>
+                <th>S.No</th>
+                <th>Name</th>
+                <th>Saathi ID</th>
+                <th>State</th>
+                <th>District</th>
+                <th>Mandal</th>
+                <th>Cluster</th>
+                <th>Village</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let report of reports; let i=index">
+                <td>{{ i+1 }}</td>
+                <td>{{ report.name }}</td>
+                <td>{{ report.id }}</td>
+                <td>{{ report.statename }}</td>
+                <td>{{ report.districtname }}</td>
+                <td>{{ report.mandalname }}</td>
+                <td>{{ report.clustername }}</td>
+                <td>{{ report.villagename }}</td>
+                <td>{{ report.createdAt | date}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->

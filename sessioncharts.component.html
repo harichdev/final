@@ -1,0 +1,63 @@
+<kendo-chart 
+[categoryAxis]="{ categories: date,  max: 20, labels: { rotation: 'auto'},
+ color:'black',title:{text:'NOTE: Click The Right Icons For Filters ',color:'brown'}}"
+     [valueAxis]="{title:{text:'VIDEOS',color:'brown'},color:'blue'}"
+  [pannable]="{ lock: 'y' }"
+  [zoomable]="{ mousewheel: { lock: 'y' } }" 
+  >
+  <kendo-chart-title text="TYPE OF VIEWER CHART" color="green"  ></kendo-chart-title>
+      <kendo-chart-tooltip [shared]="true" format="videos : {0}"></kendo-chart-tooltip>
+      <kendo-chart-value-axis>
+      <kendo-chart-value-axis-item [title]="{ text: 'videos' }">
+                
+      </kendo-chart-value-axis-item>
+  </kendo-chart-value-axis>
+  <kendo-chart-series>
+  <kendo-chart-series-item  
+  *ngFor="let item of series"
+  [data]="item.items" [name]="item.value"
+  field="videos" categoryField="testdate"
+  aggregate  = "sum"
+  type="line">
+  </kendo-chart-series-item>
+         
+    <kendo-chart-series-item [data]="dates" field="videos" categoryField="testdate" type="line" name ="videos"style= "smooth"
+    aggregate = "sum" sortby="month">
+    
+    </kendo-chart-series-item>
+    </kendo-chart-series>
+    
+
+</kendo-chart>
+
+<kendo-chart 
+[categoryAxis]="{ categories: date,  max: 20, labels: { rotation: 'auto'},color:'black',title:{text:'NOTE: Click The Right Icons For Filters ',color:'brown'}}" 
+  [pannable]="{ lock: 'y' }"
+  [zoomable]="{ mousewheel: { lock: 'y' } }" 
+  >
+  <kendo-chart-title text="VILLAGE WISE CHART" color="green"  ></kendo-chart-title>
+      <kendo-chart-tooltip [shared]="true" format="videos : {0}"></kendo-chart-tooltip>
+      <kendo-chart-value-axis>
+      <kendo-chart-value-axis-item [title]="{ text: 'videos' }">
+                
+      </kendo-chart-value-axis-item>
+  </kendo-chart-value-axis>
+  <kendo-chart-series>
+
+      <kendo-chart-series-item [data]="dates" field="videos" categoryField="testdate" type="line" name ="videos"style= "smooth"
+      aggregate = "sum" sortby="month">
+      
+      </kendo-chart-series-item>
+  <kendo-chart-series-item  
+  *ngFor="let item of series1"
+  [data]="item.items" [name]="item.value"
+  field="videos" categoryField="testdate"
+  aggregate  = "sum"
+  type="line">
+  </kendo-chart-series-item>
+         
+    
+    </kendo-chart-series>
+    
+
+</kendo-chart>
